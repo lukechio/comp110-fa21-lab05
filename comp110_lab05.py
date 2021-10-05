@@ -4,42 +4,47 @@ Module: comp110_lab05
 Exercises from lab 05, dealing with strings and file reading.
 """
 
-def max_wind_speed(hurricane_filename):
-    """
-    Finds the maximum wind speed for the hurricane.
+def max_wind_speed(hurricane_dorain):
 
-    Parameters:
-    1. hurricane_filename (type: string) - Name of the file containing the data
+  
+    f = open(hurricane_dorain,'r')
+    biggest = 0
+    for line in f:
+        vals = line.split(',')
+        diff = int(vals[-2]) 
+        if diff > biggest:
+            biggest = diff
+    return biggest
 
-    Returns:
-    (type: int) The maximum wind speed of the hurricane.
-    """
-
-    pass # replace this line with your implementation of this function
 
 
 def contains_word(word, review):
-    """
-    Determines whether the review contains the given word. 
-
-    Note that should ignore the "casing" of letters. For example "ok" is
-    considered to be contained in the review "It was an OK movie."
-
-    Parameters:
-    1. word (type: string): The word to search for.
-    2. review (type: string): The review in which to search.
-
-    Returns:
-    (type: boolean) True if word is contained in the review, and false
-    otherwise.
-    """
+    lowerword=word.lower()
+    reviewlowered=review.lower()
+    my_str_words = reviewlowered.split()
+    test = lowerword in my_str_words
+    return test
 
     pass # replace this line with your implementation of this function
 
 
 def test_max_wind_speed():
-    """ Function that tests the max_wind_speed function. """
+    if max_wind_speed("irma.csv") == 185:
+        print("irma PASSESD")
+    else:
+        print("irma FAILED")
 
+    if max_wind_speed("florence.csv") == 140:
+        print("florence PASSED")
+    else:
+        print("florence FAILED")
+
+    if max_wind_speed("dorian.csv") == 185:
+        print("dorian PASSESD")
+    else:
+        print("dorian FAILED")
+
+    
     print("Starting test of max_wind_speed")
 
     # To Do: Call your max_wind_speed function on the irma.csv file, using an if
